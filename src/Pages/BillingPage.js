@@ -5,7 +5,7 @@ import BillingDetails from "./BillingDetails";
 import BillingModal from "./BillingModal";
 
 const BillingPage = () => {
-  const [consumers] = useConsumer();
+  const [consumers, setConsumers] = useConsumer();
   const [modal, setModal] = useState(false);
 
   return (
@@ -58,7 +58,11 @@ const BillingPage = () => {
               </thead>
               <tbody>
                 {consumers?.map((consumer) => (
-                  <BillingDetails key={consumer._id} consumer={consumer} />
+                  <BillingDetails
+                    key={consumer._id}
+                    consumer={consumer}
+                    setConsumers={setConsumers}
+                  />
                 ))}
               </tbody>
             </table>

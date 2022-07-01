@@ -10,7 +10,7 @@ const BillingModal = () => {
       PaidAmount: event.target.amount.value,
     };
 
-    fetch("http://localhost:5000/billing-list", {
+    fetch("http://localhost:5000/add-billing", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -1,8 +1,31 @@
-import React from "react";
+// import React, { useEffect, useState } from "react";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { toast } from "react-toastify";
 
 const BillingDetails = ({ consumer }) => {
   const { _id, Name, Email, Phone, PaidAmount } = consumer;
+
+  // const [refresh, setRefresh] = useState("");
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/consumer")
+  //     .then((res) => res.json())
+  //     .then((data) => setConsumers(data));
+  // }, [refresh, setConsumers]);
+
+  const handleDeleteConsumer = (_id) => {
+    const procced = window.confirm("Are you Sure?");
+
+    if (procced) {
+      fetch(`http://localhost:5000/delete-billing/${_id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+      toast.success("Delete seccess");
+    }
+    // setRefresh(_id);
+  };
 
   return (
     <tr class="border-b">
@@ -28,7 +51,7 @@ const BillingDetails = ({ consumer }) => {
           </button>
         </span>
         <span>
-          <button>
+          <button onClick={() => handleDeleteConsumer(consumer._id)}>
             <TrashIcon className="h-5 w-5 text-red-500" />
           </button>
         </span>

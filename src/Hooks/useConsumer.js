@@ -7,7 +7,7 @@ const useConsumer = () => {
       .then((res) => res.json())
       .then((data) => setConsumers(data));
   }, []);
-  return [consumers];
+  return [consumers, setConsumers];
 };
 
 export default useConsumer;
